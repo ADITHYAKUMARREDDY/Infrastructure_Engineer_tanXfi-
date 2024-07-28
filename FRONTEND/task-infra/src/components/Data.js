@@ -55,7 +55,7 @@ const TaskPage = () => {
         `${config.endpoint}/api/revenue-by-customer`
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setRevenueByCustomer(data);
       setMonthlyRevenue(null);
       setRevenueByProduct(null);
@@ -69,7 +69,7 @@ const TaskPage = () => {
     try {
       const response = await fetch(`${config.endpoint}/api/top-customers`);
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       setTopCustomers(data);
       setMonthlyRevenue(null);
       setRevenueByProduct(null);

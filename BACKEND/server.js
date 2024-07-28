@@ -63,6 +63,7 @@ app.get("/api/revenue-by-customer", async (req, res) => {
   try {
     const data = await readData(fulldata);
     const revenue = calculateRevenueByCustomer(data);
+    console.log(revenue);
     res.json(revenue);
   } catch (error) {
     console.error("Error calculating revenue by customer:", error);
@@ -77,12 +78,12 @@ app.get("/api/revenue-by-customer", async (req, res) => {
 app.get("/api/top-customers", async (req, res) => {
   try {
     const data = await readData(fulldata);
-    const customerRevenue = calculateRevenueByCustomer(data);
-    const topCustomers = topCustomersByRevenue(customerRevenue, data);
-    console.log(topCustomers);
+    const customerRevenue =  calculateRevenueByCustomer(data);
+    console.log(customerRevenue);
+    const topCustomers = await topCustomersByRevenue(customerRevenue, data);
+    console.log(topCustomers,"customer revenue");
     res.json(topCustomers);
   } catch (error) {
-    console.error("Error in /api/top-customers:", error);
     res.status(500).json({ message: "Error calculating top customers", error: error.message });
   }
 });
