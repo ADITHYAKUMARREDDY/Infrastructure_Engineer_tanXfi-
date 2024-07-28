@@ -55,6 +55,7 @@ const TaskPage = () => {
         `${config.endpoint}/api/revenue-by-customer`
       );
       const data = await response.json();
+      console.log(data);
       setRevenueByCustomer(data);
       setMonthlyRevenue(null);
       setRevenueByProduct(null);
@@ -68,6 +69,7 @@ const TaskPage = () => {
     try {
       const response = await fetch(`${config.endpoint}/api/top-customers`);
       const data = await response.json();
+      // console.log(data);
       setTopCustomers(data);
       setMonthlyRevenue(null);
       setRevenueByProduct(null);
@@ -76,7 +78,7 @@ const TaskPage = () => {
       console.error("Error fetching top customers:", error);
     }
   };
-
+  // console.log(topCustomers)
   return (
     <div className="container-fluid">
       <header className="text-center my-4">
@@ -86,7 +88,7 @@ const TaskPage = () => {
         <div className="d-flex flex-wrap justify-content-center">
           <button
             onClick={fetchMonthlyRevenue}
-            className="btn btn-primary my-2 mx-1 animate-button"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Compute Monthly Revenue
           </button>
@@ -98,13 +100,13 @@ const TaskPage = () => {
           </button>
           <button
             onClick={fetchRevenueByCustomer}
-            className="btn btn-success my-2 mx-1 animate-button"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Compute Revenue by Customer
           </button>
           <button
             onClick={fetchTopCustomers}
-            className="btn btn-danger my-2 mx-1 animate-button"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Identify Top 10 Customers
           </button>
@@ -333,12 +335,15 @@ const TaskPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {topCustomers.map(({ customer_id, customer_name }) => (
-                      <tr key={customer_id}>
-                        <td style={{ textAlign: "center" }}>{customer_id}</td>
-                        <td style={{ textAlign: "center" }}>{customer_name}</td>
-                      </tr>
-                    ))}
+                    {topCustomers.map((x) => (
+                        <tr key={x.customer_id}>
+                          <td style={{ textAlign: "center" }}>{x.customer_id}</td>
+                          <td style={{ textAlign: "center" }}>
+                            {x.customer_name}
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>

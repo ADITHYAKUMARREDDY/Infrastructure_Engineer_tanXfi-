@@ -59,24 +59,19 @@ async function topCustomersByRevenue(customerRevenue, customerNames) {
       .sort(([, revenueA], [, revenueB]) => revenueB - revenueA)
       .slice(0, 10)
       .map(([customerId]) => customerId);
-
-    if (!Array.isArray(customerNames)) {
-      throw new Error("Customer names data is not an array.");
-    }
-
     const topCustomerDetails = customerNames
       .filter(({ customer_id }) => topCustomerIds.includes(customer_id))
       .map(({ customer_id, customer_name }) => ({
         customer_id,
-        customer_name,
+        customer_name
       }));
+      console.log(topCustomerDetails);
     return topCustomerDetails;
   } catch (error) {
-    console.error("Error processing top customers:", error);
+    console.error('Error processing top customers:', error);
     throw error;
   }
 }
-
 module.exports = {
   readData,
   calculateMonthlyRevenue,
