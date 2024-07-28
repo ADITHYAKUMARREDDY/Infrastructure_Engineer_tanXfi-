@@ -4,21 +4,20 @@ const cors = require("cors");
 const path = require("path");
 const {
   readData,
-  calculateMonthlyRevenue,
-  calculateRevenueByProduct,
-  calculateRevenueByCustomer,
-  topCustomersByRevenue,
+  calcMonthlyRev,
+  calcRevByProduct,
+  calcRevByCustomer,
+  topCustByRev,
 } = require("./Main");
 
 const app = express();
-const PORT = process.env.PORT || 5002;
-const fulldata = path.join(__dirname, "data.csv");
+const PORT =  3000;
+const fulldata = path.join(__dirname, "data.csv"); 
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// API Endpoints
+// endpoints
 app.get("/api/data", async (req, res) => {
   try {
     const data = await readData(fulldata);
@@ -26,21 +25,20 @@ app.get("/api/data", async (req, res) => {
   } catch (error) {
     console.error("Error reading data:", error);
     res
-      .status(500)
-      .json({ message: "Failed to read data.", error: error.message });
+      .status(500 || 400)
+      .json({ message: "Failed to read data.", error });
   }
 });
 
 app.get("/api/monthly-revenue", async (req, res) => {
   try {
     const data = await readData(fulldata);
-    const revenue = calculateMonthlyRevenue(data);
+    const revenue = calcMonthlyRev(data);
     res.json(revenue);
   } catch (error) {
-    console.error("Error calculating monthly revenue:", error);
-    res.status(500).json({
+    res.status(500 || 400).json({
       message: "Failed to calculate monthly revenue.",
-      error: error.message,
+      error
     });
   }
 });
@@ -48,13 +46,12 @@ app.get("/api/monthly-revenue", async (req, res) => {
 app.get("/api/revenue-by-product", async (req, res) => {
   try {
     const data = await readData(fulldata);
-    const revenue = calculateRevenueByProduct(data);
+    const revenue = calcRevByProduct(data);
     res.json(revenue);
   } catch (error) {
-    console.error("Error calculating revenue by product:", error);
-    res.status(500).json({
+    res.status(500 || 400).json({
       message: "Failed to calculate revenue by product.",
-      error: error.message,
+      error,
     });
   }
 });
@@ -62,14 +59,13 @@ app.get("/api/revenue-by-product", async (req, res) => {
 app.get("/api/revenue-by-customer", async (req, res) => {
   try {
     const data = await readData(fulldata);
-    const revenue = calculateRevenueByCustomer(data);
+    const revenue = calcRevByCustomer(data);
     console.log(revenue);
     res.json(revenue);
   } catch (error) {
-    console.error("Error calculating revenue by customer:", error);
-    res.status(500).json({
+    res.status(500 || 400).json({
       message: "Failed to calculate revenue by customer.",
-      error: error.message,
+      error,
     });
   }
 });
@@ -78,26 +74,15 @@ app.get("/api/revenue-by-customer", async (req, res) => {
 app.get("/api/top-customers", async (req, res) => {
   try {
     const data = await readData(fulldata);
-    const customerRevenue =  calculateRevenueByCustomer(data);
-    console.log(customerRevenue);
-    const topCustomers = await topCustomersByRevenue(customerRevenue, data);
+    const customerRevenue =  calcRevByCustomer(data);
+    const topCustomers = await topCustByRev(customerRevenue, data);
     console.log(topCustomers,"customer revenue");
     res.json(topCustomers);
   } catch (error) {
-    res.status(500).json({ message: "Error calculating top customers", error: error.message });
+    res.status(500 || 400).json({ message: "Error calculating top customers", error });
   }
 });
 
-
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "frontend/build")));
-
-// Catch-all handler to serve React app for any request that doesn't match API routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
-});
-
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

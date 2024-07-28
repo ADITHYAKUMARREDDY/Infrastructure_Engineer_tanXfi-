@@ -1,20 +1,26 @@
 const filePath = "data.csv";
-const { readData, calculateMonthlyRevenue, calculateRevenueByProduct, calculateRevenueByCustomer, topCustomersByRevenue } = require("./Main");
+const {
+  readData,
+  calcMonthlyRev,
+  calcRevByProduct,
+  calcRevByCustomer,
+  topCustByRev,
+} = require("./Main");
 
 async function main() {
   try {
     const data = await readData(filePath);
     // console.log(data);
-    const monthlyRevenue = calculateMonthlyRevenue(data);
+    const monthlyRevenue = calcMonthlyRev(data);
     console.log("Monthly Revenue:", monthlyRevenue);
 
-    const productRevenue = calculateRevenueByProduct(data);
+    const productRevenue = calcRevByProduct(data);
     console.log("Revenue by Product:", productRevenue);
 
-    const customerRevenue = calculateRevenueByCustomer(data);
+    const customerRevenue = calcRevByCustomer(data);
     console.log("Revenue by Customer:", customerRevenue);
 
-    const topCustomers = await topCustomersByRevenue(customerRevenue, data);
+    const topCustomers = await topCustByRev(customerRevenue, data);
     console.log("Top 10 Customers:", topCustomers);
   } catch (error) {
     console.error("Error reading data:", error);

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./FRONTEND
+    ports:
+      - "80:80"  # Frontend will be accessible on port 80
+    depends_on:
+      - backend  # Ensures backend service starts before frontend
+
+  backend:
+    build:
+      context: ./BACKEND
+    ports:
+      - "3000:3000"  # Backend will be accessible on port 3000
+    environment:
+      - NODE_ENV=production
