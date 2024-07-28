@@ -4,15 +4,19 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { config } from "../App";
 
 const TaskPage = () => {
-  const [userName, setUserName] = useState("");
-  const [monthlyRev, setMonthlyRev] = useState(null);
-  const [revByProduct, setRevByProduct] = useState(null);
-  const [revByCustomer, setRevByCustomer] = useState(null);
-  const [topCustomers, setTopCustomers] = useState(null);
+  const [locname, setlocname] = useState("");
+
+  const [MonthlyRev, setMonthlyRev] = useState(null);
+  const [RevByProduct, setRevByProduct] = useState(null);
+  const [RevByCustomer, setRevByCustomer] = useState(null);
+  const [topCustByRev, settopCustByRev] = useState(null);
 
   useEffect(() => {
-    const storedName = localStorage.getItem("userName");
-    if (storedName) setUserName(storedName);
+    const storedUserName = localStorage.getItem("userName");
+    if (storedUserName) {
+      setlocname(storedUserName);
+    }
+
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "auto";
@@ -26,7 +30,7 @@ const TaskPage = () => {
       setMonthlyRev(data);
       setRevByProduct(null);
       setRevByCustomer(null);
-      setTopCustomers(null);
+      settopCustByRev(null);
     } catch (error) {
       console.error("Error fetching monthly revenue:", error);
     }
@@ -39,7 +43,7 @@ const TaskPage = () => {
       setRevByProduct(data);
       setMonthlyRev(null);
       setRevByCustomer(null);
-      setTopCustomers(null);
+      settopCustByRev(null);
     } catch (error) {
       console.error("Error fetching revenue by product:", error);
     }
@@ -51,20 +55,22 @@ const TaskPage = () => {
         `${config.endpoint}/api/revenue-by-customer`
       );
       const data = await response.json();
+      console.log(data);
       setRevByCustomer(data);
       setMonthlyRev(null);
       setRevByProduct(null);
-      setTopCustomers(null);
+      settopCustByRev(null);
     } catch (error) {
       console.error("Error fetching revenue by customer:", error);
     }
   };
 
-  const fetchTopCustomers = async () => {
+  const fetchtopCustByRev = async () => {
     try {
       const response = await fetch(`${config.endpoint}/api/top-customers`);
       const data = await response.json();
-      setTopCustomers(data);
+      // console.log(data);
+      settopCustByRev(data);
       setMonthlyRev(null);
       setRevByProduct(null);
       setRevByCustomer(null);
@@ -72,35 +78,35 @@ const TaskPage = () => {
       console.error("Error fetching top customers:", error);
     }
   };
-
+  // console.log(topCustByRev)
   return (
     <div className="container-fluid">
       <header className="text-center my-4">
         <h2>
-          Welcome, <span style={{ color: "red" }}>{userName}</span>
+          Welcome, <span style={{ color: "red" }}>{locname}</span>
         </h2>
         <div className="d-flex flex-wrap justify-content-center">
           <button
             onClick={fetchMonthlyRev}
-            className="btn btn-secondary my-2 mx-1"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Compute Monthly Revenue
           </button>
           <button
             onClick={fetchRevByProduct}
-            className="btn btn-secondary my-2 mx-1"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Compute Revenue by Product
           </button>
           <button
             onClick={fetchRevByCustomer}
-            className="btn btn-secondary my-2 mx-1"
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Compute Revenue by Customer
           </button>
           <button
-            onClick={fetchTopCustomers}
-            className="btn btn-secondary my-2 mx-1"
+            onClick={fetchtopCustByRev}
+            className="btn btn-secondary my-2 mx-1 animate-button"
           >
             Identify Top 10 Customers
           </button>
@@ -109,7 +115,7 @@ const TaskPage = () => {
 
       <div className="row">
         <div className="col-md-4 mb-4">
-          <div className="accordion" id="infoAccordion">
+          <div className="accordion" id="welcomeAccordion">
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingSummary">
                 <button
@@ -127,7 +133,7 @@ const TaskPage = () => {
                 id="collapseSummary"
                 className="accordion-collapse collapse show"
                 aria-labelledby="headingSummary"
-                data-bs-parent="#infoAccordion"
+                data-bs-parent="#welcomeAccordion"
               >
                 <div className="accordion-body">
                   <ul>
@@ -196,7 +202,7 @@ const TaskPage = () => {
                 id="collapseTask"
                 className="accordion-collapse collapse"
                 aria-labelledby="headingTask"
-                data-bs-parent="#infoAccordion"
+                data-bs-parent="#welcomeAccordion"
               >
                 <div
                   className="accordion-body"
@@ -243,7 +249,7 @@ const TaskPage = () => {
         </div>
         <div className="col-md-8">
           <div className="text-content p-3">
-            {monthlyRev && (
+            {MonthlyRev && (
               <div
                 className="mb-4"
                 style={{ maxHeight: "400px", overflowY: "auto" }}
@@ -257,7 +263,7 @@ const TaskPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(monthlyRev).map(([month, revenue]) => (
+                    {Object.entries(MonthlyRev).map(([month, revenue]) => (
                       <tr key={month}>
                         <td style={{ textAlign: "center" }}>{month}</td>
                         <td style={{ textAlign: "center" }}>
@@ -270,7 +276,7 @@ const TaskPage = () => {
               </div>
             )}
 
-            {revByProduct && (
+            {RevByProduct && (
               <div
                 className="mb-4"
                 style={{ maxHeight: "400px", overflowY: "auto" }}
@@ -284,7 +290,7 @@ const TaskPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(revByProduct).map(([product, revenue]) => (
+                    {Object.entries(RevByProduct).map(([product, revenue]) => (
                       <tr key={product}>
                         <td style={{ textAlign: "center" }}>{product}</td>
                         <td style={{ textAlign: "center" }}>
@@ -297,7 +303,7 @@ const TaskPage = () => {
               </div>
             )}
 
-            {revByCustomer && (
+            {RevByCustomer && (
               <div
                 className="mb-4"
                 style={{ maxHeight: "400px", overflowY: "auto" }}
@@ -311,7 +317,7 @@ const TaskPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(revByCustomer).map(
+                    {Object.entries(RevByCustomer).map(
                       ([customer, revenue]) => (
                         <tr key={customer}>
                           <td style={{ textAlign: "center" }}>{customer}</td>
@@ -326,7 +332,7 @@ const TaskPage = () => {
               </div>
             )}
 
-            {topCustomers && (
+            {topCustByRev && (
               <div
                 className="mb-4"
                 style={{ maxHeight: "400px", overflowY: "auto" }}
@@ -335,16 +341,16 @@ const TaskPage = () => {
                 <table className="table table-sm table-striped">
                   <thead>
                     <tr>
-                      <th style={{ textAlign: "center" }}>Customer</th>
-                      <th style={{ textAlign: "center" }}>Revenue</th>
+                      <th style={{ textAlign: "center" }}>Customer ID</th>
+                      <th style={{ textAlign: "center" }}>Customer Name</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(topCustomers).map(([customer, revenue]) => (
-                      <tr key={customer}>
-                        <td style={{ textAlign: "center" }}>{customer}</td>
+                    {topCustByRev.map((x) => (
+                      <tr key={x.customer_id}>
+                        <td style={{ textAlign: "center" }}>{x.customer_id}</td>
                         <td style={{ textAlign: "center" }}>
-                          {revenue.toFixed(2)}
+                          {x.customer_name}
                         </td>
                       </tr>
                     ))}
