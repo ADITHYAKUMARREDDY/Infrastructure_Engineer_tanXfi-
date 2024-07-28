@@ -1,0 +1,71 @@
+﻿order_id,customer_id,customer_name,order_date,product_id,product_name,product_price,quantity
+51,1001,Amit Sharma,5/5/2024,2050,USB-C Adapter,14.99,3
+52,1002,Sunita Reddy,5/10/2024,2051,Wireless Mouse,25.99,1
+53,1003,Rajesh Kumar,5/15/2024,2052,Mechanical Keyboard,79.99,1
+54,1004,Neha Singh,5/20/2024,2053,External Hard Drive,89.99,2
+55,1005,Priya Menon,5/25/2024,2054,Bluetooth Speaker,29.99,2
+56,1006,Vikas Nair,6/1/2024,2055,Webcam,49.99,1
+57,1007,Anjali Patel,6/5/2024,2056,Monitor,199.99,1
+58,1008,Ravi Desai,6/10/2024,2057,Keyboard & Mouse Combo,49.99,2
+59,1009,Lakshmi Krishnan,6/15/2024,2058,Noise Cancelling Headphones,199.99,1
+60,1010,Vivek Kapoor,6/20/2024,2059,Gaming Headset,59.99,1
+61,1011,Aisha Khan,6/25/2024,2060,Smartphone Stand,15.99,2
+62,1012,Mohit Sinha,7/1/2024,2061,Portable Charger,39.99,2
+63,1013,Sneha Mehta,7/5/2024,2062,Smart Light Bulbs,19.99,4
+64,1014,Akash Verma,7/10/2024,2063,Gaming Mouse,49.99,2
+65,1015,Rohit Gupta,7/15/2024,2064,VR Headset,299.99,1
+66,1016,Kavita Chawla,7/20/2024,2065,Smart Home Hub,99.99,1
+67,1017,Suresh Iyer,7/25/2024,2066,Bluetooth Earbuds,79.99,1
+68,1018,Pooja Rai,8/1/2024,2067,Security Camera,149.99,1
+69,1019,Harish Malhotra,8/5/2024,2068,Smart Lock,119.99,1
+70,1020,Ritu Jain,8/10/2024,2069,Smart Thermostat,149.99,1
+71,1021,Ashok Bhatia,8/15/2024,2070,Smart Plug,24.99,3
+72,1022,Maya Singh,8/20/2024,2071,Portable SSD,129.99,1
+73,1023,Rakesh Agarwal,8/25/2024,2072,Smart Doorbell,179.99,1
+74,1024,Nandini Prasad,9/1/2024,2073,4K Webcam,99.99,1
+75,1025,Aditya Rao,9/5/2024,2074,Laptop Cooling Pad,39.99,1
+76,1026,Shweta Arora,9/10/2024,2075,Wireless Charger,29.99,2
+77,1027,Vishal Mehta,9/15/2024,2076,Noise Cancelling Microphone,89.99,1
+78,1028,Divya Narang,9/20/2024,2077,Video Conference Light,49.99,1
+79,1029,Karan Oberoi,9/25/2024,2078,Adjustable Laptop Stand,59.99,1
+80,1030,Meera Joshi,9/30/2024,2079,Smart Light Switch,34.99,2
+81,1031,Aman Singh,10/1/2024,2080,Noise Cancelling Headphones,199.99,1
+82,1032,Anjali Sharma,10/2/2024,2081,Smart Door Lock,129.99,1
+83,1033,Ramesh Gupta,10/3/2024,2082,Portable Projector,299.99,1
+84,1034,Geeta Kapoor,10/4/2024,2083,Smart Bulbs,19.99,6
+85,1035,Sanjay Mehta,10/5/2024,2084,Wireless Keyboard,49.99,1
+86,1036,Priya Kumar,10/6/2024,2085,Gaming Mouse,39.99,1
+87,1037,Vikram Singh,10/7/2024,2086,Laptop Docking Station,129.99,1
+88,1038,Neha Jain,10/8/2024,2087,Bluetooth Speaker,29.99,1
+89,1039,Ravi Kumar,10/9/2024,2088,Smart Watch,199.99,1
+90,1040,Sneha Sharma,10/10/2024,2089,Noise Cancelling Earbuds,149.99,1
+91,1041,Amit Sharma,10/11/2024,2090,Wireless Charger,29.99,2
+92,1042,Sunita Reddy,10/12/2024,2091,Smart Light Bulbs,19.99,3
+93,1043,Rajesh Kumar,10/13/2024,2092,Mechanical Keyboard,79.99,1
+94,1044,Neha Singh,10/14/2024,2053,External Hard Drive,89.99,1
+95,1045,Priya Menon,10/15/2024,2093,Bluetooth Speaker,29.99,1
+96,1046,Vikas Nair,10/16/2024,2094,Webcam,49.99,2
+97,1047,Anjali Patel,10/17/2024,2095,Monitor,199.99,1
+98,1048,Ravi Desai,10/18/2024,2096,Keyboard & Mouse Combo,49.99,1
+99,1049,Lakshmi Krishnan,10/19/2024,2097,Noise Cancelling Headphones,199.99,1
+100,1050,Vivek Kapoor,10/20/2024,2098,Gaming Headset,59.99,1
+101,1051,Aisha Khan,10/21/2024,2099,Smartphone Stand,15.99,2
+102,1052,Mohit Sinha,10/22/2024,2061,Portable Charger,39.99,1
+103,1053,Sneha Mehta,10/23/2024,2062,Smart Light Bulbs,19.99,2
+104,1054,Akash Verma,10/24/2024,2093,Gaming Mouse,49.99,2
+105,1055,Rohit Gupta,10/25/2024,2094,VR Headset,299.99,1
+106,1056,Kavita Chawla,10/26/2024,2065,Smart Home Hub,99.99,1
+107,1057,Suresh Iyer,10/27/2024,2066,Bluetooth Earbuds,79.99,1
+108,1058,Pooja Rai,10/28/2024,2067,Security Camera,149.99,1
+109,1059,Harish Malhotra,10/29/2024,2068,Smart Lock,119.99,1
+110,1060,Ritu Jain,10/30/2024,2069,Smart Thermostat,149.99,1
+111,1061,Ashok Bhatia,10/31/2024,2070,Smart Plug,24.99,1
+112,1062,Maya Singh,11/1/2024,2071,Portable SSD,129.99,1
+113,1063,Rakesh Agarwal,11/2/2024,2072,Smart Doorbell,179.99,1
+114,1064,Nandini Prasad,11/3/2024,2073,4K Webcam,99.99,1
+115,1065,Aditya Rao,11/4/2024,2074,Laptop Cooling Pad,39.99,1
+116,1066,Manish Thakur,11/5/2024,2075,Fitness Tracker,49.99,1
+117,1067,Sanjay Pillai,11/6/2024,2076,Smart Glasses,199.99,1
+118,1068,Arjun Patel,11/7/2024,2077,Smart Light Switch,39.99,1
+119,1069,Rohini Shah,11/8/2024,2078,Smart Sprinkler System,149.99,1
+120,1070,Anil Joshi,11/9/2024,2079,Electric Toothbrush,79.99,1
