@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DottedButton from "./DottedButton";
+import { Input, message } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import DottedButton from "./DottedButton"; // Assuming you have this component
 
 const LoginPage = () => {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("userName", name);
-    navigate("/TaskPage");
+  const handleLogin = () => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (userData && userData.email === email && userData.password === password) {
+      navigate("/data");
+    } else {
+      message.error("Invalid email or password!");
+    }
   };
 
   return (
@@ -19,28 +26,42 @@ const LoginPage = () => {
         <div className="card shadow-sm mx-auto my-5" style={card}>
           <div className="card-body p-3 p-md-4 p-xl-5">
             <div className="text-center mb-4">
-              <h2>Task - Infrastructure Engineer</h2>
-              <p>Company: tanX</p>
+              <h2>Login</h2>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
               <div className="row gy-3">
                 <div className="col-12">
-                  <label htmlFor="name" className="form-label">
-                    Name <span className="text-danger">*</span>
+                  <label htmlFor="email" className="form-label">
+                    Email <span className="text-danger">*</span>
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                  <Input
+                    prefix={<UserOutlined />}
+                    placeholder="Enter your email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={inputStyle}
+                    required
+                  />
+                </div>
+                <div className="col-12">
+                  <label htmlFor="password" className="form-label">
+                    Password <span className="text-danger">*</span>
+                  </label>
+                  <Input
+                    prefix={<LockOutlined />}
+                    type="password"
+                    placeholder="Enter your password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={inputStyle}
                     required
                   />
                 </div>
                 <div className="col-12">
                   <div className="d-grid">
-                    <DottedButton style={buttonStyle} />
+                    <DottedButton style={buttonStyle} onClick={handleLogin} />
                   </div>
                 </div>
               </div>
@@ -69,6 +90,10 @@ const container = {
 const card = {
   backgroundColor: "#fff",
   borderRadius: "10px",
+};
+
+const inputStyle = {
+  marginBottom: "1rem",
 };
 
 const buttonStyle = {
