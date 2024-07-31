@@ -4,7 +4,11 @@
 I've completed a task using MERN technology, but instead of MongoDB, I opted to use a CSV file. I'm currently considering switching to Django to further explore and enhance my skills. I have about 5 months of experience with JavaScript, and I'm eager to broaden my expertise with other technologies.
 
 PORTFOLIO: https://www.crio.do/learn/portfolio/kumaradithya498/
+
 RESUME: https://drive.google.com/file/d/1sG2FJ0e-9bp_NczMsHxKDyi4eqL2JSdn/view?usp=drive_link
+
+demo video(125 sec): https://drive.google.com/file/d/1W5DAg-XnaYz_hg4sfkkVc1aARJuMjQcw/view?usp=drive_link
+
 
 FOR RUNNING THE CODE CLONE THE CODE OPEN DOCKER:NOW IN TERMINAL
 command: docker-compose up
